@@ -1,12 +1,17 @@
 package canvas
 
 import (
+	"fmt"
 	"image"
 	"math"
 )
 
 type Vector struct {
 	X, Y float64
+}
+
+func (v Vector) String() string {
+	return fmt.Sprintf("{%3.2f %3.2f}", v.X, v.Y)
 }
 
 func (v *Vector) Rotate(angle float64) {
@@ -24,6 +29,10 @@ func (v1 *Vector) Sub(v2 *Vector) Vector {
 
 func (v *Vector) Scale(a float64) {
 	v.X, v.Y = v.X*a, v.Y*a
+}
+
+func (v *Vector) ScaleVector(v2 *Vector) {
+	v.X, v.Y = v.X*v2.X, v.Y*v2.Y
 }
 
 func (v *Vector) Length() float64 {
